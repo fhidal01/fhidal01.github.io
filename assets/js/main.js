@@ -66,7 +66,7 @@
 					var $this = $(this);
 
 					// External link? Bail.
-						if ($this.attr('href').charAt(0) != '#')
+						if ($this.attr('href').charAt(0) != '#' || '.')
 							return;
 
 					// Deactivate all links.
@@ -80,10 +80,16 @@
 				})
 				.each(function() {
 
-					var	$this = $(this),
-						id = $this.attr('href'),
-						$section = $(id);
+					var	$this = $(this);
+					var	id = $this.attr('href');
 
+					// External link? Bail.
+					if(id.charAt(0) === '.' || id.charAt(0) === '#')
+						return;
+
+					var	$section = $(id);
+
+						console.log(id)
 					// No section for this link? Bail.
 						if ($section.length < 1)
 							return;
